@@ -6,8 +6,25 @@
 
 .myDogs {
 	width: 850px;
+	clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
 }
 
 .myDogs:hover {
 	border: 2px solid black;
+}
+
+.myModal {
+	background-color: lime;
+	height: 500px;
+	width: 500px;
+	margin-top: 15px;
+	display: none;
+	position: fixed;
+	top: 30px;
+	left: 50px;
+	z-index: 5;
+}
+
+.closeBar {
+	font-size: 25px;
 }

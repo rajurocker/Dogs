@@ -3,7 +3,7 @@ console.log('Array of object')
 var dogs = [
 	{
 		name: "Steve",
-		id: "dogs",
+		id: "dogs101",
 		breed: "bull Dog",
 		color: "black and white",
 		height: 60,
@@ -49,15 +49,15 @@ var dogs = [
 	}
 ];
 // all dogs
-
+var id = 101;
 function allDogs(){
 for(var i = 0; i < dogs.length; i++) {
   document.getElementById('dogs').innerHTML += '</br><h1 class="jumbotron text-success">' + dogs[i].name + '</h1>';
-  document.getElementById('dogs').innerHTML += '<img class="img-thumbnail myDogs" src="' + dogs[i].photo + ' "  alt="Dog"/>';
+  document.getElementById('dogs').innerHTML += '<img id="dogs' + id.toString() + ' " class="img-thumbnail mt-5 myDogs" src="' + dogs[i].photo + ' "  alt="Dog"/>';
   document.getElementById('dogs').innerHTML += '</br></br> Breed : <h5 class="text-success" >' + dogs[i].breed + '</h5>';
   document.getElementById('dogs').innerHTML += '</br> Age : <h5 class="text-success" > ' + dogs[i].age + '</h5>';
   document.getElementById('dogs').innerHTML += '</br> Height : <h5 class="text-success" >' + dogs[i].height + '</h5>';
-
+  id++;
 }
 }
 
@@ -205,13 +205,42 @@ document.getElementById('changeName').addEventListener('click', function(){
 });
  
 
-document.getElementById('dogs').addEventListener('click', function(){
+// document.getElementById('dogs').addEventListener('click', function(){
   allDogs();
+// });
+
+
+$('.myDogs').on('click', function(){
+  // console.log('dogs');
+   console.log(typeof(this.id));// to check the data type
+  console.log(this.id);
+
+  $('.myModal').show();
+  for (var i = 0; i < dogs.length ; i++){
+    console.log(typeof(dogs[i].id));
+    console.log(dogs[i].id);
+    console.log(i);
+    console.log(dogs[i].id === this.id);
+    //id property of dogs is checked for  equivalence with the image id of the clicked element
+    if (this.id.trim() == dogs[i].id.trim()) {
+      //remove leading and trailing space in the string while trying to match
+      console.log(dogs[i].name);
+      console.log(dogs[i].breed);
+      console.log(dogs[i].color);
+      console.log(dogs[i].height);
+      console.log(dogs[i].age);
+      document.getElementById('modalContent').innerHTML
+      += '<div class="jumbotron text-info"> ' + dogs[i].name + '</br>'
+      + dogs[i].breed + '</br>' + dogs[i].color + '</br>'
+      + 'Height : ' + dogs[i].height + '</br>' + 'Age :' + dogs[i].age + '</div>'
+      + '<img class="card-thumbnail mt-5 myDogs modalDog" src="' + dogs[i].photo + '"  alt="Dog"/>'
+    }
+  }
+
 });
 
-
-
-
-
+$('.closeBar').on('click', function(){
+	$('.myModal').hide();
+});
 
 
